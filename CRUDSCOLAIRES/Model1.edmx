@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Gestion_EcoleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Classe">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="libelle" Type="nchar" MaxLength="60" />
+          <Property Name="niveau" Type="nchar" MaxLength="60" />
+          <Property Name="specilaite" Type="nchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="Etudiant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom" Type="nchar" MaxLength="50" />
+          <Property Name="prenom" Type="nchar" MaxLength="50" />
+          <Property Name="credit" Type="int" />
+          <Property Name="reglement" Type="int" />
+          <Property Name="annee" Type="nchar" MaxLength="50" />
+          <Property Name="idclasse" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Etudiant_Classe">
+          <End Role="Classe" Type="Self.Classe" Multiplicity="1" />
+          <End Role="Etudiant" Type="Self.Etudiant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classe">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Etudiant">
+              <PropertyRef Name="idclasse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Gestion_EcoleModelStoreContainer">
+          <EntitySet Name="Classe" EntityType="Self.Classe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Etudiant" EntityType="Self.Etudiant" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Etudiant_Classe" Association="Self.FK_Etudiant_Classe">
+            <End Role="Classe" EntitySet="Classe" />
+            <End Role="Etudiant" EntitySet="Etudiant" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Gestion_EcoleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Classe">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="niveau" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+          <Property Name="specilaite" Type="String" MaxLength="60" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Etudiant" Relationship="Self.FK_Etudiant_Classe" FromRole="Classe" ToRole="Etudiant" />
+        </EntityType>
+        <EntityType Name="Etudiant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="prenom" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="credit" Type="Int32" />
+          <Property Name="reglement" Type="Int32" />
+          <Property Name="annee" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="idclasse" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Classe" Relationship="Self.FK_Etudiant_Classe" FromRole="Etudiant" ToRole="Classe" />
+        </EntityType>
+        <Association Name="FK_Etudiant_Classe">
+          <End Role="Classe" Type="Self.Classe" Multiplicity="1" />
+          <End Role="Etudiant" Type="Self.Etudiant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classe">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Etudiant">
+              <PropertyRef Name="idclasse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Gestion_EcoleEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Classe" EntityType="Self.Classe" />
+          <EntitySet Name="Etudiant" EntityType="Self.Etudiant" />
+          <AssociationSet Name="FK_Etudiant_Classe" Association="Self.FK_Etudiant_Classe">
+            <End Role="Classe" EntitySet="Classe" />
+            <End Role="Etudiant" EntitySet="Etudiant" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Gestion_EcoleModelStoreContainer" CdmEntityContainer="Gestion_EcoleEntities2">
+          <EntitySetMapping Name="Classe">
+            <EntityTypeMapping TypeName="Gestion_EcoleModel.Classe">
+              <MappingFragment StoreEntitySet="Classe">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="niveau" ColumnName="niveau" />
+                <ScalarProperty Name="specilaite" ColumnName="specilaite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Etudiant">
+            <EntityTypeMapping TypeName="Gestion_EcoleModel.Etudiant">
+              <MappingFragment StoreEntitySet="Etudiant">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="credit" ColumnName="credit" />
+                <ScalarProperty Name="reglement" ColumnName="reglement" />
+                <ScalarProperty Name="annee" ColumnName="annee" />
+                <ScalarProperty Name="idclasse" ColumnName="idclasse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

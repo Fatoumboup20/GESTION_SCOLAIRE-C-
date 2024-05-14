@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Gestion_EcoleModelStoreContainer" CdmEntityContainer="Gestion_EcoleEntities2">
+    <EntitySetMapping Name="Classe">
+      <EntityTypeMapping TypeName="Gestion_EcoleModel.Classe">
+        <MappingFragment StoreEntitySet="Classe">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="libelle" ColumnName="libelle" />
+          <ScalarProperty Name="niveau" ColumnName="niveau" />
+          <ScalarProperty Name="specilaite" ColumnName="specilaite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Etudiant">
+      <EntityTypeMapping TypeName="Gestion_EcoleModel.Etudiant">
+        <MappingFragment StoreEntitySet="Etudiant">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="credit" ColumnName="credit" />
+          <ScalarProperty Name="reglement" ColumnName="reglement" />
+          <ScalarProperty Name="annee" ColumnName="annee" />
+          <ScalarProperty Name="idclasse" ColumnName="idclasse" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
