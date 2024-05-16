@@ -98,7 +98,7 @@ namespace CRUDSCOLAIRES
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Vérifiez si une ligne est sélectionnée dans le dataGridView
+          
             if (dataclasse.SelectedRows.Count > 0)
             {
                 int selectedIndex = dataclasse.SelectedRows[0].Index;
@@ -108,30 +108,26 @@ namespace CRUDSCOLAIRES
 
                 if (classe != null)
                 {
-                    // Mettez à jour les propriétés de l'objet Classe avec les nouvelles valeurs des contrôles
-                    classe.niveau = comboniveau.Text;
+                       classe.niveau = comboniveau.Text;
                     classe.specilaite = combospecialite.Text;
                     classe.libelle = comboniveau.Text + combospecialite.Text;
-                    // Autres champs...
+                 
 
                     try
                     {
-                        // Sauvegardez les modifications dans la base de données
+                      
                         context.SaveChanges();
                         MessageBox.Show("Modification réussie...");
                         dataclasse.DataSource = context.Classe.ToList(); 
-
-                        // Réinitialisez le texte du bouton pour revenir à l'état d'ajout
                         btnclasse.Text = "Enregistrer";
 
 
                     }
                     catch (DbEntityValidationException ex)
                     {
-                        // Récupérez les erreurs de validation
-                        var validationErrors = ex.EntityValidationErrors.SelectMany(error => error.ValidationErrors);
+                          var validationErrors = ex.EntityValidationErrors.SelectMany(error => error.ValidationErrors);
 
-                        // Générez un message d'erreur contenant les détails des erreurs de validation
+                
                         StringBuilder errorMessage = new StringBuilder();
                         errorMessage.AppendLine("Erreur lors de la validation des données :");
                         foreach (var validationError in validationErrors)
@@ -190,6 +186,11 @@ namespace CRUDSCOLAIRES
         {
             comboniveau.Text = "";
             combospecialite.Text = "";
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

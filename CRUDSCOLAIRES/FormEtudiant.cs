@@ -66,75 +66,49 @@ namespace CRUDSCOLAIRES
 
 
         //modif
-
         private void btnmodif_Click(object sender, EventArgs e)
         {
             if (dataetudiant.SelectedRows.Count > 0)
             {
-                int selectedIndex = dataetudiant.SelectedRows[0].Index;
-                int etudiantID = Convert.ToInt32(dataetudiant.Rows[selectedIndex].Cells["id"].Value);
+                int selectedStudentId = Convert.ToInt32(dataetudiant.SelectedRows[0].Cells["id"].Value);
+                Etudiant etudiantAModifier = context.Etudiant.Find(selectedStudentId);
 
-                Etudiant etudiant = context.Etudiant.FirstOrDefault(x => x.id == etudiantID);
-
-                if (etudiant != null)
+                if (etudiantAModifier != null)
                 {
-                    // Récupérer les anciennes informations de l'étudiant
-                    string ancienneAnnee = etudiant.annee;
-                    string ancienNom = etudiant.nom;
-                    int ancienCredit = (int)etudiant.credit;
-                    int ancienReglement = (int)etudiant.reglement;
-                    string ancienPrenom = etudiant.prenom;
+                    // Mettre à jour les propriétés de l'étudiant avec les nouvelles valeurs des contrôles du formulaire
+                    etudiantAModifier.prenom = txtprenom.Text;
+                    etudiantAModifier.nom = txtnom.Text;
 
-                    // Effectuer les modifications si nécessaire
-                    string nouvelleAnnee = txtannee.Text;
-                    string nouveauNom = txtnom.Text;
-                    int nouveauCredit;
-                    int nouveauReglement;
-                    string nouveauPrenom = txtprenom.Text;
-
-                    if (int.TryParse(txtcredit.Text, out nouveauCredit) && int.TryParse(txtreglement.Text, out nouveauReglement))
+                    int reglement;
+                    if (int.TryParse(txtreglement.Text, out reglement))
                     {
-                        if (ancienneAnnee != nouvelleAnnee || ancienNom != nouveauNom || ancienCredit != nouveauCredit || ancienReglement != nouveauReglement || ancienPrenom != nouveauPrenom)
-                        {
-                            try
-                            {
-                                etudiant.annee = nouvelleAnnee;
-                                etudiant.nom = nouveauNom;
-                                etudiant.credit = nouveauCredit;
-                                etudiant.reglement = nouveauReglement;
-                                etudiant.prenom = nouveauPrenom;
-
-                                context.SaveChanges();
-                                MessageBox.Show("Modification réussie...");
-                                ChargerDonneesEtudiants();
-                            }
-                            catch (DbUpdateException ex)
-                            {
-                                MessageBox.Show("Erreur lors de l'enregistrement des modifications : " + ex.Message);
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Aucune modification apportée.");
-                        }
+                        etudiantAModifier.reglement = reglement;
                     }
                     else
                     {
-                        MessageBox.Show("Erreur de conversion des données.");
+                        MessageBox.Show("Le montant du règlement n'est pas un nombre valide.");
+                        return; // Sortir de la méthode si la conversion échoue
                     }
 
-                    // Afficher les nouvelles informations dans les contrôles
-                    txtannee.Text = etudiant.annee;
-                    txtnom.Text = etudiant.nom;
-                    txtcredit.Text = etudiant.credit.ToString();
-                    txtreglement.Text = etudiant.reglement.ToString();
-                    txtprenom.Text = etudiant.prenom;
+                    etudiantAModifier.annee = txtannee.Text;
 
-                    btnetudiant.Text = "Enregistrer";
-                }
-                else
-                {
-                    MessageBox.Show("L'étudiant sélectionné n'existe pas dans la base de données.");
+                    int credit;
+                    if (int.TryParse(txtcredit.Text, out credit))
+                    {
+                        etudiantAModifier.credit = credit;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Le crédit n'est pas un nombre valide.");
+                        return; // Sortir de la méthode si la conversion échoue
+                    }
+
+                    etudiantAModifier.idclasse = Convert.ToInt32(comboCLASSE.SelectedValue);
+                    // Sauvegarder les modifications dans la base de données
+                    context.SaveChanges();
+                    // Actualiser la liste des étudiants affichée dans le DataGridView
+                    dataetudiant.DataSource = context.Etudiant.ToList();
+                    MessageBox.Show("Étudiant modifié avec succès...");
                 }
             }
             else
@@ -142,6 +116,7 @@ namespace CRUDSCOLAIRES
                 MessageBox.Show("Veuillez sélectionner un étudiant à modifier.");
             }
         }
+
         private void btnefface_Click(object sender, EventArgs e)
         {
             txtprenom.Text = "";
@@ -203,16 +178,19 @@ namespace CRUDSCOLAIRES
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            btnrecherhce_Click(sender, e);
+           // btnrecherhce_Click(sender, e);
         }
 
         private void dataetudiant_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Ce gestionnaire d'événements peut être utilisé pour effectuer des actions lorsque le contenu d'une cellule est cliqué
-            // Par exemple, vous pouvez afficher les détails de l'étudiant sélectionné dans d'autres contrôles
-        }
+             }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void comboCLASSE_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

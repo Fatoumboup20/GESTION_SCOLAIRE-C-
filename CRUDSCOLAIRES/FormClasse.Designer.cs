@@ -36,16 +36,16 @@
             this.comboniveau = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataclasse = new System.Windows.Forms.DataGridView();
             this.btnclasse = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.dataclasse = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataclasse)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.dataclasse);
             this.panel1.Controls.Add(this.btneffacer);
             this.panel1.Controls.Add(this.btnsupp);
             this.panel1.Controls.Add(this.btnmodif);
@@ -53,18 +53,16 @@
             this.panel1.Controls.Add(this.comboniveau);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.dataclasse);
             this.panel1.Controls.Add(this.btnclasse);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.splitter1);
             this.panel1.Location = new System.Drawing.Point(-1, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(775, 435);
+            this.panel1.Size = new System.Drawing.Size(880, 383);
             this.panel1.TabIndex = 0;
             // 
             // btneffacer
             // 
-            this.btneffacer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btneffacer.BackColor = System.Drawing.Color.Gray;
             this.btneffacer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btneffacer.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btneffacer.Location = new System.Drawing.Point(208, 283);
@@ -77,7 +75,7 @@
             // 
             // btnsupp
             // 
-            this.btnsupp.BackColor = System.Drawing.Color.Olive;
+            this.btnsupp.BackColor = System.Drawing.Color.Gray;
             this.btnsupp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnsupp.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnsupp.Location = new System.Drawing.Point(7, 283);
@@ -90,7 +88,7 @@
             // 
             // btnmodif
             // 
-            this.btnmodif.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnmodif.BackColor = System.Drawing.Color.Gray;
             this.btnmodif.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnmodif.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnmodif.Location = new System.Drawing.Point(208, 202);
@@ -153,19 +151,9 @@
             this.label2.Text = "NIVEAU";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // dataclasse
-            // 
-            this.dataclasse.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataclasse.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataclasse.Location = new System.Drawing.Point(351, 3);
-            this.dataclasse.Name = "dataclasse";
-            this.dataclasse.Size = new System.Drawing.Size(421, 429);
-            this.dataclasse.TabIndex = 37;
-            this.dataclasse.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataclasse_CellContentClick);
-            // 
             // btnclasse
             // 
-            this.btnclasse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnclasse.BackColor = System.Drawing.Color.Gray;
             this.btnclasse.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnclasse.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnclasse.Location = new System.Drawing.Point(7, 205);
@@ -187,20 +175,21 @@
             this.label1.Text = "AJOUT CLASSE";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // splitter1
+            // dataclasse
             // 
-            this.splitter1.Location = new System.Drawing.Point(0, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(772, 435);
-            this.splitter1.TabIndex = 34;
-            this.splitter1.TabStop = false;
-            this.splitter1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter1_SplitterMoved);
+            this.dataclasse.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dataclasse.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataclasse.Location = new System.Drawing.Point(351, 3);
+            this.dataclasse.Name = "dataclasse";
+            this.dataclasse.Size = new System.Drawing.Size(578, 387);
+            this.dataclasse.TabIndex = 45;
+            this.dataclasse.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // FormClasse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(953, 450);
             this.Controls.Add(this.panel1);
             this.Name = "FormClasse";
             this.Text = "FormClasse";
@@ -218,12 +207,11 @@
         private System.Windows.Forms.ComboBox comboniveau;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataclasse;
         private System.Windows.Forms.Button btnclasse;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.Button btneffacer;
         private System.Windows.Forms.Button btnsupp;
         private System.Windows.Forms.Button btnmodif;
+        private System.Windows.Forms.DataGridView dataclasse;
     }
 }
